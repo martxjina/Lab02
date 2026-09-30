@@ -1,12 +1,38 @@
+from tokenize import endpats
+
+
 def carica_da_file(file_path):
     """Carica le foto dal file, creando un nuovo anno ogni volta che compare per la prima volta"""
     # TODO
+    f = open('file_path', 'r', encoding = 'utf-8')
+    f.readline()
+    anni = []
+    for line in f:
+        parola = line.strip().split(',')
 
+        if len(parola) >= 5:
+            d = {
+                'codice' : parola[0],
+                'titolo' : parola[1],
+                'autore' : parola[2],
+                'mese' : parola[3],
+                'anno' : parola[4]
+            };
+        if d['anno'] not in anno:
+            anni.append(d['anno'])
+
+    f.close()
+    return anni
 
 def aggiungi_foto(album, codice, titolo, autore, mese, anno, file_path):
     """Aggiunge una foto all'album, creando l'anno al volo se non è ancora presente"""
     # TODO
-
+    if foto['anno'] not in anni:
+        album.append(foto['anno'])
+    f = open('file_path', 'a', encoding='utf-8')
+    riga = f"\n{foto['codice']}, {foto['titolo']}, {foto['autore']}, {foto['mese']}, {foto['anno']}"
+    f.write(riga)
+    f.close()
 
 def cerca_foto(album, codice):
     """Cerca una foto nell'album dato il codice"""
